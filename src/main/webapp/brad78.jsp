@@ -26,7 +26,7 @@
 		       ]
 	}
 	*/
-	int p=Integer.parse(request.getParameter("page"));
+	int p=Integer.parseInt(request.getParameter("page"));
 	JSONObject obj=new JSONObject();
 // 	模擬後端
 	if(p<=0){
