@@ -1,0 +1,37 @@
+<!-- AJAX (非同步 )標籤符號 ex:<hotels>
+						<hotel id="" name="" ...></hotel>
+					</hotels>-->
+<!-- 標籤都是物件 -->
+<!-- XML 需要所有標籤符號都有頭有尾才能夠解析-->
+<script type="text/javascript">
+	const xhttp=new XMLHttpRequest();
+	xhttp.onreadystatechange=function(){
+// 		console.log("ok"+xhttp.readyState);
+// 		console.log("ok"+xhttp.status);
+		if(xhttp.readyState==4&&xhttp.status==200){
+			console.log("ok");
+			document.getElementById("here").innerHTML=xhttp.responseText;
+		}
+	};
+	xhttp.onload=callback;
+	function callback(){
+		var id2=document.getElementById('id2');
+		id2.innerHTML=xhttp.responseText;
+	}
+	function test1(){
+		xhttp.open("GET", "brad69.jsp", true);
+		xhttp.send();
+	}
+</script>
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+	</head>
+	<body>
+	 	<input type="button" value="test1" onclick="test1()"><hr>
+		<div id="here"></div>
+		<div id="id2"></div>
+	</body>
+</html>

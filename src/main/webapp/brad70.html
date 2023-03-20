@@ -1,0 +1,39 @@
+<!-- AJAX主導權在端 後端只是配合回傳-->
+<script type="text/javascript">
+	const xhttp=new XMLHttpRequest();
+	xhttp.onload=callback;
+	function callback(){
+		var id1=document.getElementById("id1");
+		id1.innerHTML=xhttp.responseText;
+	}
+	function doJob(){
+		setInterval("job()",1000);
+	}
+	function doJobPost(){
+		setInterval("jobPost()",1000);
+	}
+	function job(){
+		var max=document.getElementById("max").value;
+		xhttp.open("GET","brad71.jsp?max="+max,true);
+		xhttp.send();
+	}
+	function jobPost(){
+		var max=document.getElementById("max").value;
+		xhttp.open("POST","brad72.jsp",true);
+		xhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+		xhttp.send("max="+max);
+	}
+// 	doJob();
+doJobPost();
+</script>
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+	</head>
+	<body>
+	 	<input type="number" id="max">
+	 	<div id="id1"></div>
+	</body>
+</html>

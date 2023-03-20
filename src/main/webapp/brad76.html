@@ -1,0 +1,37 @@
+<!-- 沒有換列沒有空白 比較省效能>>min -->
+<!-- 網路上copy 網址https://www.w3schools.com/jquery/jquery_get_started.asp -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script>
+	function test2(){
+		$("#mesg").load("brad77.jsp?account="+$("#account").val());
+	}
+	function add(){
+		$.post("brad78.jsp",
+			{
+				"max":$("#max").val(),
+				"password":$("#password").val(),
+				"realname":$("#realname").val(),
+				"birthday":$("#birthday").val()
+			},function(data,status){
+				if(status=="success"){
+					console.log("add success");
+				}
+			});
+	}		
+</script>
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+	</head>
+	<body>
+		<form>
+			Account: <input type="test" id="account"><span id="mesg" ></span> <br>
+			Password: <input type="password" id="password"> <br>
+			Realname: <input type="text" id="realname"> <br>
+			Birthday: <input type="date" id="birthday"> <br>
+			<button onclick="add()">ADD</button>
+		</form>
+	</body>
+</html>
