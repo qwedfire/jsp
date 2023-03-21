@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+		<script>
+			//沒有要重新載入頁面 所以弄一個變數設定page
+			var page;
+			function test1(p){
+				//處理頁面 連接方式 處理成功 失敗
+				$.ajax({
+					url:"brad78.jsp?page="+p,
+					type:"get",
+					success:doSuccess,
+					error:doError
+				});
+			}
+			function prev(){
+				test1(--page);
+			}
+			function next(){
+				test1(++page);
+			}
+			function doError(){
+				console.log("Error");
+			}
+			//
+			function doSuccess(json){
+				var jsonObj=$.parseJSON(json.trim());
+				page=jsonObj.page;
+				if(jsonObj.page<=0) page=1;
+				if(jsonObj.page>10) page=10;
+				$("#page").html(page);
+				if(jsonObj.error!=0)return;
+				//清空table裡面的資料不然會愈來越多筆資料
+				$("#table").empty();
+// 				jscript解析出來的陣列
+				$(jsonObj.data).each(function(i,row){
+					console.log(i+" "+row.name+":"+row.tel);
+					$("#table").append(
+						"<tr>"+
+						"<td>"+row.name+"</td>"+
+						"<td>"+row.tel+"</td>"+
+						"</tr>"
+					);
+				});
+// 				console.log(json);
+			}
+		</script>
+		<title>Insert title here</title>
+	</head>
+	<body>
+		<input type="button" value="Load" onclick="test1(1)">
+		<input type="button" value="Prev" onclick="prev()">
+		<input type="button" value="Next" onclick="next()">
+		<hr>
+		Page:<span id="page"></span>
+		<hr>
+		<table border="1" width="100%" id="table">
+			<th></th>
+		</table>
+	</body>
+</html>

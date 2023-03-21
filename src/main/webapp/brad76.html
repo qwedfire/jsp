@@ -2,13 +2,13 @@
 <!-- 網路上copy 網址https://www.w3schools.com/jquery/jquery_get_started.asp -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <script>
-	function test2(){
+	function checkaccount(){
 		$("#mesg").load("brad77.jsp?account="+$("#account").val());
 	}
 	function add(){
 		$.post("brad78.jsp",
 			{
-				"max":$("#max").val(),
+				"account":$("#account").val(),
 				"password":$("#password").val(),
 				"realname":$("#realname").val(),
 				"birthday":$("#birthday").val()
@@ -27,7 +27,7 @@
 	</head>
 	<body>
 		<form>
-			Account: <input type="test" id="account"><span id="mesg" ></span> <br>
+			Account: <input type="test" id="account" onblur="checkaccount()"><span id="mesg"></span> <br>
 			Password: <input type="password" id="password"> <br>
 			Realname: <input type="text" id="realname"> <br>
 			Birthday: <input type="date" id="birthday"> <br>
